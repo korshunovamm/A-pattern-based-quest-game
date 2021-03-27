@@ -1,55 +1,70 @@
-class Culture:
-   """Культура"""
-   def __repr__(self):
-       return self.__str__()
+def setval(char_type):
+    char_dict = {
+        "Hulk": {'Intel': 2, 'Strength': 10, 'Flex': 3, 'Health': 7},
+        "Hlms": {'Intel': 10, 'Strength': 2, 'Flex': 2, 'Health': 5},
+        "Spider": {'Intel': 3, 'Strength': 2, 'Flex': 10, 'Health': 6},
+        "Jss": {'Intel': 1, 'Strength': 2, 'Flex': 3, 'Health': 10},
+        # "Ekz": {'Intel': 1, 'Strength': 2, 'Flex': 3, 'Health': 4, 'Luck': 5}
+    }
+    return char_dict[char_type]
 
 
-class hulk(Culture):
-   def makedict(self):
-       self.char_dict = {'Intel': 1, 'Strength': 2, 'Flex': 3, 'Health': 4, 'Luck': 5}
-   def __str__(self):
-       return 'Hulk'
-
-
-class doc(Culture):
-   def __str__(self):
-       return 'Doc'
+def factory(char_type):
+    types = {
+        "Hulk": HulkClass,
+        "Hlms": SherlockHolmsClass,
+        "Spider": SpidermanClass,
+        "Jss": JesusClass
+    }
+    return types[char_type]()
 
 
 class Character:
-   def __init__(self, char_dict):
-       self.intel = char_dict['intel']
-       self.strength = char_dict['strength']
-       self.flex = char_dict['flex']
-       self.health = char_dict['health']
-       self.luck = char_dict['luck']
-
-   def __str__(self):
-       return self.personality.__str__()
-
-   def __repr__(self):
-       return self.personality.__repr__()
-
-   def make_char(self):
-       """Задать строй правительству : это и есть наш Фабричный Метод"""
-       raise AttributeError('Not Implemented Culture')
+    def __init__(self, char_dict):
+        self.intel = char_dict['Intel']
+        self.strength = char_dict['Strength']
+        self.flex = char_dict['Flex']
+        self.health = char_dict['Health']
+        self.luck = char_dict['Luck']
 
 
-class Hulk(Character):
-   def make_char(self):
-       self.personality = hulk()
+class HulkClass(Character):
+    def __init__(self):
+        char_dict = setval(str(self))
+        super().__init__(char_dict)
+
+    def __str__(self):
+        return 'Hulk'
 
 
-class Doc(Character):
-   def make_char(self):
-       self.personality = doc()
+class SherlockHolmsClass(Character):
+    def __init__(self):
+        char_dict = setval(str(self))
+        super().__init__(char_dict)
+
+    def __str__(self):
+        return 'Hlms'
 
 
-g1 = Hulk()
-g1.make_char()
+class SpidermanClass(Character):
+    def __init__(self):
+        char_dict = setval(str(self))
+        super().__init__(char_dict)
+
+    def __str__(self):
+        return 'Spider'
+
+
+class JesusClass(Character):
+    def __init__(self):
+        char_dict = setval(str(self))
+        super().__init__(char_dict)
+
+    def __str__(self):
+        return 'Jss'
+
+
+g1 = factory('Hulk')
+print(type(g1))
 print(str(g1))
-#
-# g2 = Char2()
-# g2.make_char()
-# print(str(g2))
-
+print(g1.luck)
