@@ -25,7 +25,6 @@ class Character:
         self.strength = char_dict['Strength']
         self.flex = char_dict['Flex']
         self.health = char_dict['Health']
-        self.luck = char_dict['Luck']
 
 
 class HulkClass(Character):
@@ -62,9 +61,3 @@ class JesusClass(Character):
 
     def __str__(self):
         return 'Jss'
-
-
-g1 = factory('Hulk')
-print(type(g1))
-print(str(g1))
-print(g1.luck)
