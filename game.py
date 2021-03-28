@@ -1,63 +1,52 @@
-def setval(char_type):
-    char_dict = {
-        "Hulk": {'Intel': 2, 'Strength': 10, 'Flex': 3, 'Health': 7},
-        "Hlms": {'Intel': 10, 'Strength': 2, 'Flex': 2, 'Health': 5},
-        "Spider": {'Intel': 3, 'Strength': 2, 'Flex': 10, 'Health': 6},
-        "Jss": {'Intel': 1, 'Strength': 2, 'Flex': 3, 'Health': 10},
-        # "Ekz": {'Intel': 1, 'Strength': 2, 'Flex': 3, 'Health': 4, 'Luck': 5}
-    }
-    return char_dict[char_type]
+class Personality:
+    def __init__(self, name):
+        self.name = name
 
 
-def factory(char_type):
-    types = {
-        "Hulk": HulkClass,
-        "Hlms": SherlockHolmsClass,
-        "Spider": SpidermanClass,
-        "Jss": JesusClass
-    }
-    return types[char_type]()
+class CreatorPersonality(Personality):
+    def factory(self):
+        person_class = {
+            "Hulk": HulkClass,
+            "Hlms": SherlockHolmesClass,
+            "Spider": SpidermanClass,
+            "Jss": JesusClass
+        }
+        return person_class[self.name]()
 
 
 class Character:
-    def __init__(self, char_dict):
-        self.intel = char_dict['Intel']
-        self.strength = char_dict['Strength']
-        self.flex = char_dict['Flex']
-        self.health = char_dict['Health']
+    def __init__(self, name, *args):
+        self.name = name
+        self.intel = args[0]
+        self.strength = args[1]
+        self.flex = args[2]
+        self.health = args[3]
+
+    def __str__(self):
+        return f'{self.name} (intel: {self.intel}, strenght: {self.strength},' \
+               f' flex: {self.flex}, health: {self.health})'
+
+
+class SherlockHolmesClass(Character):
+    def __init__(self):
+        super().__init__('SherlockHolmes', 2, 10, 2, 6)
 
 
 class HulkClass(Character):
     def __init__(self):
-        char_dict = setval(str(self))
-        super().__init__(char_dict)
-
-    def __str__(self):
-        return 'Hulk'
-
-
-class SherlockHolmsClass(Character):
-    def __init__(self):
-        char_dict = setval(str(self))
-        super().__init__(char_dict)
-
-    def __str__(self):
-        return 'Hlms'
+        super().__init__('Hulk', 10, 2, 3, 5)
 
 
 class SpidermanClass(Character):
     def __init__(self):
-        char_dict = setval(str(self))
-        super().__init__(char_dict)
-
-    def __str__(self):
-        return 'Spider'
+        super().__init__('Spider', 3, 3, 10, 4)
 
 
 class JesusClass(Character):
     def __init__(self):
-        char_dict = setval(str(self))
-        super().__init__(char_dict)
+        super().__init__('Jesus', 5, 2, 3, 10)
 
-    def __str__(self):
-        return 'Jss'
+
+b = CreatorPersonality('Hulk').factory()
+print(b.health)
+print(b)
