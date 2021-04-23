@@ -1,16 +1,11 @@
-class Personality:
-    def __init__(self, name):
-        self.name = name
-
-
 class Character:
-    def __init__(self, name, *args):
+    def __init__(self, name, intel, strength, flex, health):
         self.name = name
-        self.intel = args[0]
-        self.strength = args[1]
-        self.flex = args[2]
-        self.health = args[3]
+        self.intel = intel
+        self.strength = strength
+        self.flex = flex
+        self.health = health
 
     def __str__(self):
-        return f'{self.name} (intel: {self.intel}, strenght: {self.strength},' \
+        return f'{self.name} (intel: {self.intel}, strength: {self.strength},' \
                f' flex: {self.flex}, health: {self.health})'

@@ -1,9 +1,11 @@
-from Creators import Personality
-from Products import HulkClass, SherlockHolmesClass, SpidermanClass, JesusClass
+from Characters import HulkClass, SherlockHolmesClass, SpidermanClass, JesusClass
 
 
-class CreatorPersonality(Personality):
-    def factory(self):
+class CreatorPersonality:
+    def __init__(self, name):
+        self.name = name
+
+    def create_character(self):
         person_class = {
             "Hulk": HulkClass,
             "Hlms": SherlockHolmesClass,
@@ -11,3 +13,4 @@ class CreatorPersonality(Personality):
             "Jss": JesusClass
         }
         return person_class[self.name]()
+
