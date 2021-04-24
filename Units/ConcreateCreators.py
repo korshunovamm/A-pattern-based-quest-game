@@ -1,4 +1,4 @@
-from Characters import HulkClass, SherlockHolmesClass, SpidermanClass, JesusClass
+from Units.Characters import HulkClass, SherlockHolmesClass, SpidermanClass, JesusClass
 
 
 class CreatorPersonality:
